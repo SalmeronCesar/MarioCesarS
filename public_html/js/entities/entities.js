@@ -67,3 +67,4 @@ game.LevelTrigger = me.Entity.extend({
        me.state.current().resetPlayer(this.xSpawn, ySpawn);
    } 
 });
+
