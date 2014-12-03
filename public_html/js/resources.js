@@ -18,8 +18,8 @@ game.resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
-        {name: "CesarLevel01", type: "tmx", src: "data/map/Cesarlevel01.tmx"},
-        {name: "CesarLevel02", type: "tmx", src: "data/map/Cesarlevel02.tmx"},
+        {name: "CesarLevel01", type: "tmx", src: "data/map/CesarLevel01.tmx"},
+        {name: "CesarLevel02", type: "tmx", src: "data/map/CesarLevel02.tmx"},
 	/* Background music. 
 	 * @example
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/"},
