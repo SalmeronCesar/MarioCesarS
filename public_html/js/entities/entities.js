@@ -3,20 +3,20 @@ game.PlayerEntity = me.Entity.extend({
     init: function(x, y, settings){
         this._super(me.Entity, 'init', [x, y, {
                 image:"mario",
-                spritewidth: "128",
-                spriteheight:"128",
-                width: 128,
-                height: 128,
+                spritewidth: "64",
+                spriteheight:"64",
+                width: 64,
+                height: 64,
                 getShape: function(){
-                    return(new me.Rect(0, 0, 30, 128)).toPolygon();
+                    return(new me.Rect(0, 0, 20, 64)).toPolygon();
                 }
         }]);
     
-    this.renderable.addAnimation("idle", [3]);
+    this.renderable.addAnimation("idle", [39]);
     //Creates an animation called smallWalk using pictures of the image defined above (mario)
     //Sets the animation to run through pictures 8-13
     // The last number says we switch between pictures every 80 milliseconds
-    this.renderable.addAnimation("smallWalk", [8, 9, 10, 11, 12, 13], 80);
+    this.renderable.addAnimation("smallWalk", [143, 144, 145, 146, 147, 148, 149, 150, 151], 110);
     
     this.renderable.setCurrentAnimation("idle");
         //Sets the speed we go on the X-axis(firstnumber) and Y-axis(second number)
@@ -34,6 +34,7 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x +=this.body.accel.x * me.timer.tick;
             
         }
+        //if key is pressed it will be left
         else if(me.input.isKeyPressed("left")){
             this.flipX(true);
             this.body.vel.x -=this.body.accel.x * me.timer.tick;
@@ -41,6 +42,7 @@ game.PlayerEntity = me.Entity.extend({
         else{
             this.body.vel.x = 0;
         }
+        //If space a certain key is pressed then it will make the person/character jump
           if(me.input.isKeyPressed("jump")){
               if(!this.body.jumping && !this.body.falling) {
               this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
@@ -50,7 +52,7 @@ game.PlayerEntity = me.Entity.extend({
         
         this.body.update(delta);
         me.collision.check(this, true, this.collideHandler.bind(this), true);
-        
+        //Makes the ccharacter walk but its name smallWalk
         if(this.body.vel.x !== 0){
             if (!this.renderable.isCurrentAnimation("smallWalk")) {
                 this.renderable.setCurrentAnimation("smallWalk");
@@ -59,18 +61,18 @@ game.PlayerEntity = me.Entity.extend({
         }else{
             this.renderable.setCurrentAnimation("idle");
         }
-        
+        //idle is basicly standing, its telling the game if the character is not moving it should stand up 
         
         this._super(me.Entity, "update", [delta]);
         return true;
     },
-    
+    //collideHandler is 
     collideHandler: function(response){
         
     }
     
 });
-
+// It triggers the level to transfer into another level
 game.LevelTrigger = me.Entity.extend({
    init: function(x, y, settings){
        this._super(me.Entity, 'init', [x, y, settings]);
